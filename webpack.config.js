@@ -24,8 +24,8 @@ module.exports = {
                 test: /\.tsx?/,
                 exclude: /(node_modules|bower_components)/,
                 use: ['awesome-typescript-loader'],
-            }
-
+            },
+            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
         ]
     },
     externals: {
