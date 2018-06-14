@@ -1,18 +1,23 @@
-import React, {Component} from "react";
-import Feed from "./feed";
-import Overview from "./overview";
+import * as React from "react";
+import {Feed} from "./feed";
+import {Overview} from "./overview";
+import {Component, ComponentClass} from "react";
 
-export default class Navigation extends Component {
+interface NavItem {
+    title: string;
+    component: ComponentClass;
+}
 
-    navItems = [
+export class Navigation extends Component {
+    navItems : NavItem[] = [
         {title: 'Main', component: Feed},
         {title: 'Shows', component: Overview},
-        {title: 'Subscriptions', component: Feed},
+        {title: 'Subscriptions', component: Overview},
     ];
 
-    state = {activeComponent: this.navItems[0].component};
+    state: {activeComponent: ComponentClass} = {activeComponent: this.navItems[0].component};
 
-    navigate(item) {
+    navigate(item: NavItem) {
         console.log('navigate to: ', item);
         this.setState({activeComponent: item.component});
     }
