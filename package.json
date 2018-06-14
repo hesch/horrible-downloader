@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "bulma": "^0.7.1",
-    "electron": "^2.0.2",
     "feedparser": "^2.2.9",
     "irc": "^0.5.2",
     "irc-dcc": "^0.2.4",
@@ -34,6 +33,7 @@
     "@babel/preset-typescript": "^7.0.0-beta.51",
     "babel-loader": "^8.0.0-beta",
     "css-loader": "^0.28.11",
+    "electron": "^2.0.2",
     "electron-builder": "^20.15.3",
     "electron-webpack": "^2.1.2",
     "node-sass": "^4.9.0",
