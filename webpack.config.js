@@ -12,6 +12,7 @@ module.exports = {
                         presets: [
                             '@babel/preset-env',
                             '@babel/preset-react',
+                            '@babel/preset-typescript',
                             ['@babel/preset-stage-2', {
                                 decoratorsLegacy: true
                             }]

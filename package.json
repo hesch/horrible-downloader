@@ -31,6 +31,7 @@
     "@babel/preset-env": "^7.0.0-beta.51",
     "@babel/preset-react": "^7.0.0-beta.51",
     "@babel/preset-stage-2": "^7.0.0-beta.51",
+    "@babel/preset-typescript": "^7.0.0-beta.51",
     "babel-loader": "^8.0.0-beta",
     "css-loader": "^0.28.11",
     "electron-builder": "^20.15.3",
@@ -38,6 +39,7 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
+    "typescript": "^2.9.2",
     "webpack": "^4.8.1"
   },
   "electronWebpack": {
