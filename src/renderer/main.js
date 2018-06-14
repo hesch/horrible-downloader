@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import Feed from '../feed';
+import Navigation from "../navigation";
+import './main.scss';
 
 const App = () => (
-    <Feed />
+    <Navigation />
 );
 
 ReactDOM.render(<App />, document.getElementById('app'));
