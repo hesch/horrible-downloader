@@ -4,8 +4,9 @@
   "description": "HorribleDownloader is a Downloader for the HorribleSubs Website",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/electron .",
-    "dev-server": "webpack-dev-server"
+    "dev": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "dist": "compile && electron-builder"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,8 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "source-map-support": "^0.5.3"
   },
   "devDependencies": {
     "babel": "^6.23.0",
@@ -29,7 +31,13 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
+    "electron-builder": "^20.0.8",
+    "electron-webpack": "^1.13.0",
+    "webpack": "^3.10.0"
+  },
+  "electronWebpack": {
+    "renderer": {
+      "webpackConfig": "webpack.config.js"
+    }
   }
 }

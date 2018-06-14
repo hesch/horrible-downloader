@@ -15,8 +15,6 @@ export default class Feed extends Component {
 
         parser.on('data', data => this.data.push(data));
 
-
-
         fetch('/feed')
             .then(res => res.text())
             .then(t => parser.write(t, undefined, () => this.forceUpdate()));
