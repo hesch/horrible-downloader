@@ -1,7 +1,7 @@
 import * as FeedParser from "feedparser";
-import React, { Component } from 'react';
+import * as React from 'react';
 
-export default class Feed extends Component {
+export default class Feed extends React.Component {
   private data: Article[];
 
   constructor(props: {}) {
