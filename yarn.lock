@@ -777,6 +777,13 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
+"@types/feedparser@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@types/feedparser/-/feedparser-2.2.1.tgz#6804f13a8598d3336a469dabac00e662c4cd9225"
+  dependencies:
+    "@types/node" "*"
+    "@types/sax" "*"
+
 "@types/node@*":
   version "10.3.3"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.3.3.tgz#8798d9e39af2fa604f715ee6a6b19796528e46c3"
@@ -797,6 +804,12 @@
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.17.tgz#d59d1a632570b0713946ed9c2949d994773633c5"
   dependencies:
     csstype "^2.2.0"
+
+"@types/sax@*":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/sax/-/sax-1.0.0.tgz#30d5e6bdbf126daf6e412c639251dd974bd47cdc"
+  dependencies:
+    "@types/node" "*"
 
 "@types/webpack-env@^1.13.6":
   version "1.13.6"

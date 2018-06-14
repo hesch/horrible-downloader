@@ -1,37 +1,30 @@
+import * as FeedParser from "feedparser";
 import React, { Component } from 'react';
-import FeedParser from 'feedparser';
 
 export default class Feed extends Component {
-    constructor() {
-        super();
-        this.data = [];
-        this.fetchData();
-    }
+  private data: Article[];
 
-    data;
+  constructor(props: {}) {
+    super(props);
+    this.data = [];
+    this.fetchData();
+  }
 
-    fetchData() {
-        const parser = new FeedParser([{}]);
+  public fetchData() {
+    const parser = new FeedParser({});
 
-        parser.on('data', data => this.data.push(data));
+    parser.on('data', (data: Article) => this.data.push(data));
 
-        fetch('/feed')
-            .then(res => res.text())
-            .then(t => parser.write(t, undefined, () => this.forceUpdate()));
+    fetch('/feed')
+      .then(res => res.text())
+      .then(t => parser.write(t, undefined, () => this.forceUpdate()));
+  }
 
-    }
-
-    render() {
-        return (
-            <ul id="feed">
-                {
-                    this.data.map(article => (
-                        <li key={article.guid}>
-                            {article.title}
-                        </li>
-                    ))
-                }
-            </ul>
-        );
-    }
+  public render() {
+    return (
+      <ul id="feed">
+        {this.data.map(article => <li key={article.guid}>{article.title}</li>)}
+      </ul>
+    );
+  }
 }
