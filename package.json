@@ -14,14 +14,14 @@
   },
   "dependencies": {
     "bulma": "^0.7.1",
-    "electron": "^1.8.7",
+    "electron": "^2.0.2",
     "feedparser": "^2.2.9",
     "irc": "^0.5.2",
     "irc-dcc": "^0.2.4",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
-    "redux": "^3.7.2",
+    "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "source-map-support": "^0.5.6"
   },
