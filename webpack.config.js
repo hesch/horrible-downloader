@@ -1,6 +1,11 @@
 const path = require('path');
 
 module.exports = {
+    devtool: "source-map",
+    resolve: {
+        // Add '.ts' and '.tsx' as resolvable extensions.
+        extensions: [".ts", ".tsx", ".js", ".json"]
+    },
     module: {
         rules: [
             {
@@ -27,10 +32,6 @@ module.exports = {
             },
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
         ]
-    },
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM"
     },
     devServer: {
         contentBase: "./",
