@@ -784,6 +784,12 @@
     "@types/node" "*"
     "@types/sax" "*"
 
+"@types/irc@^0.3.32":
+  version "0.3.32"
+  resolved "https://registry.yarnpkg.com/@types/irc/-/irc-0.3.32.tgz#4c7a72633635ebb63717cf915d6816b7d6875702"
+  dependencies:
+    "@types/node" "*"
+
 "@types/node@*":
   version "10.3.3"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.3.3.tgz#8798d9e39af2fa604f715ee6a6b19796528e46c3"
