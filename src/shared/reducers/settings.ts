@@ -2,13 +2,13 @@ import {Reducer} from "redux";
 import {Action} from "./Action";
 import {Store} from "./store";
 
-export default ((state: Store.Settings = {}, action: Action): Store.Settings => {
+export default ((state: Store.Settings = { downloadLocation: '' }, action: Action): Store.Settings => {
   switch (action.type) {
     case 'SETTINGS_CHANGE':
-      return action.payload;
+      return { downloadLocation: action.payload };
     default:
       return state;
   }
 }) as Reducer;
 
-export const getDownloadLocation = (state: {downloadLocation:string}) => state.downloadLocation;
+export const getDownloadLocation = (state: Store.Settings) => state.downloadLocation;

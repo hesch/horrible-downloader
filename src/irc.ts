@@ -1,5 +1,7 @@
 import {getDownloadLocation} from "./shared/reducers/root";
 import {Socket} from "net";
+import {Store} from "./shared/reducers/store";
+import {Store as ReduxStore} from 'redux';
 
 const { ipcMain: ipc } = require('electron');
 
@@ -15,7 +17,7 @@ interface DccArgs {
   length: number;
 }
 
-module.exports = (store : {getState: ()=>{}}) => {
+module.exports = (store : ReduxStore<Store.All>) => {
 
     const client = new irc.Client('irc.rizon.net', 'testNick', {autoConnect: false, secure: true, port: 6697});
     const dcc = new DCC(client);

@@ -1,6 +1,6 @@
 export type Action = {
   type: 'SETTINGS_CHANGE',
-  payload: number,
+  payload: string,
 } | {
   type: 'RESET_COUNTER',
 }
