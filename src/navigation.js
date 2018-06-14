@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import Feed from "./feed";
+import Overview from "./overview";
 
 export default class Navigation extends Component {
 
     navItems = [
         {title: 'Main', component: Feed},
-        {title: 'Shows', component: Feed},
+        {title: 'Shows', component: Overview},
         {title: 'Subscriptions', component: Feed},
     ];
 
