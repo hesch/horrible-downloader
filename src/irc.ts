@@ -22,7 +22,7 @@ module.exports = (store : ReduxStore<Store.All>) => {
     const client = new irc.Client('irc.rizon.net', 'testNick', {autoConnect: false, secure: true, port: 6697});
     const dcc = new DCC(client);
 
-    client.addListener('error', function(message: string) {
+    client.addListener('error', (message: string) => {
         console.log('irc-err: ', message);
     });
 
@@ -34,7 +34,7 @@ module.exports = (store : ReduxStore<Store.All>) => {
                 console.log('accepting file');
                 if (err) {
                     console.log(err);
-                    //client.notice(from, err);
+                    // client.notice(from, err);
                     return;
                 }
                 con.on('data', () => console.log(con.bytesRead + '/' + args.length));
