@@ -12,7 +12,6 @@ module.exports = {
                         presets: [
                             '@babel/preset-env',
                             '@babel/preset-react',
-                            '@babel/preset-typescript',
                             ['@babel/preset-stage-2', {
                                 decoratorsLegacy: true
                             }]
@@ -21,8 +20,17 @@ module.exports = {
                     }
                 }
             },
+            {
+                test: /\.tsx?/,
+                exclude: /(node_modules|bower_components)/,
+                use: ['awesome-typescript-loader'],
+            }
 
         ]
+    },
+    externals: {
+        "react": "React",
+        "react-dom": "ReactDOM"
     },
     devServer: {
         contentBase: "./",

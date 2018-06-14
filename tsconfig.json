@@ -11,6 +11,11 @@
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2017", "dom"],
     "strict": true,
-    "noUnusedLocal": true
+    "noUnusedLocal": true,
+    "jsx": "react",
+    "include": [
+      "./src/**/*"
+    ],
+    "noImplicitAny": true,
   }
 }
