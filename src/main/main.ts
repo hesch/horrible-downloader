@@ -62,6 +62,6 @@ app.on('activate', () => {
 });
 
 // create main BrowserWindow when electron is ready
-Electron.app.on('ready', () => {
+app.on('ready', () => {
   mainWindow = createMainWindow();
 });
