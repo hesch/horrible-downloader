@@ -1,6 +1,8 @@
-export type Action = {
-  type: 'SETTINGS_CHANGE',
-  payload: string,
-} | {
-  type: 'RESET_COUNTER',
-}
+export type Action =
+  | {
+      type: 'SETTINGS_CHANGE';
+      payload: string;
+    }
+  | {
+      type: 'RESET_COUNTER';
+    };

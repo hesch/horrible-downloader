@@ -1,8 +1,11 @@
-import {Reducer} from "redux";
-import {Action} from "./Action";
-import {Store} from "./store";
+import { Reducer } from 'redux';
+import { Action } from './Action';
+import { Store } from './store';
 
-export default ((state: Store.Settings = { downloadLocation: '' }, action: Action): Store.Settings => {
+export default ((
+  state: Store.Settings = { downloadLocation: '' },
+  action: Action,
+): Store.Settings => {
   switch (action.type) {
     case 'SETTINGS_CHANGE':
       return { downloadLocation: action.payload };
@@ -11,4 +14,5 @@ export default ((state: Store.Settings = { downloadLocation: '' }, action: Actio
   }
 }) as Reducer;
 
-export const getDownloadLocation = (state: Store.Settings) => state.downloadLocation;
+export const getDownloadLocation = (state: Store.Settings) =>
+  state.downloadLocation;

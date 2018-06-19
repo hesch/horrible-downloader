@@ -1,4 +1,4 @@
-import * as FeedParser from "feedparser";
+import * as FeedParser from 'feedparser';
 import * as React from 'react';
 
 export class Feed extends React.Component {

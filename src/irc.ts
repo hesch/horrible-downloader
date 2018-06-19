@@ -1,7 +1,7 @@
-import {getDownloadLocation} from "./shared/reducers/root";
-import {Socket} from "net";
-import {Store} from "./shared/reducers/store";
-import {Store as ReduxStore} from 'redux';
+import { getDownloadLocation } from './shared/reducers/root';
+import { Socket } from 'net';
+import { Store } from './shared/reducers/store';
+import { Store as ReduxStore } from 'redux';
 
 const { ipcMain: ipc } = require('electron');
 
@@ -17,36 +17,50 @@ interface DccArgs {
   length: number;
 }
 
-module.exports = (store : ReduxStore<Store.All>) => {
+module.exports = (store: ReduxStore<Store.All>) => {
+  const client = new irc.Client('irc.rizon.net', 'testNick', {
+    autoConnect: false,
+    secure: true,
+    port: 6697,
+  });
+  const dcc = new DCC(client);
 
-    const client = new irc.Client('irc.rizon.net', 'testNick', {autoConnect: false, secure: true, port: 6697});
-    const dcc = new DCC(client);
+  client.addListener('error', (message: string) => {
+    console.log('irc-err: ', message);
+  });
 
-    client.addListener('error', (message: string) => {
-        console.log('irc-err: ', message);
-    });
+  client.on('dcc-send', (from: string, args: DccArgs, message: string) => {
+    console.log('received dcc request for file: ' + args.filename);
+    const ws = fs.createWriteStream(
+      path.join(getDownloadLocation(store.getState()), args.filename),
+    );
+    dcc.acceptFile(
+      from,
+      args.host,
+      args.port,
+      args.filename,
+      args.length,
+      (err: string, filename: string, con: Socket) => {
+        console.log('accepting file');
+        if (err) {
+          console.log(err);
+          // client.notice(from, err);
+          return;
+        }
+        con.on('data', () => console.log(con.bytesRead + '/' + args.length));
+        con.pipe(ws);
+      },
+    );
+  });
 
-    client.on('dcc-send', (from:string, args: DccArgs, message: string) => {
-        console.log('received dcc request for file: ' + args.filename);
-        const ws = fs.createWriteStream(path.join(getDownloadLocation(store.getState()),args.filename));
-        dcc.acceptFile(from, args.host, args.port, args.filename,
-            args.length, (err: string, filename: string, con: Socket) => {
-                console.log('accepting file');
-                if (err) {
-                    console.log(err);
-                    // client.notice(from, err);
-                    return;
-                }
-                con.on('data', () => console.log(con.bytesRead + '/' + args.length));
-                con.pipe(ws);
-            });
-    });
+  const connected = new Promise(client.connect);
 
-    const connected = new Promise(client.connect);
-
-    ipc.on('download', (event: any, {bot, pack}: {bot:string, pack:number}) => {
-        connected.then(() => {
-            client.say(bot, `xdcc send ${pack}`);
-        });
-    });
+  ipc.on(
+    'download',
+    (event: any, { bot, pack }: { bot: string; pack: number }) => {
+      connected.then(() => {
+        client.say(bot, `xdcc send ${pack}`);
+      });
+    },
+  );
 };

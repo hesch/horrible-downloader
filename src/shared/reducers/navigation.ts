@@ -1,13 +1,14 @@
-import {Reducer} from "redux";
-import {Action} from "./Action";
+import { Reducer } from 'redux';
+import { Action } from './Action';
 
 export default ((state = {}, action: Action) => {
-    switch (action.type) {
-        case 'SETTINGS_CHANGE':
-            return action.payload;
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case 'SETTINGS_CHANGE':
+      return action.payload;
+    default:
+      return state;
+  }
 }) as Reducer;
 
-export const getDownloadLocation = (state: {downloadLocation:string}) => state.downloadLocation;
+export const getDownloadLocation = (state: { downloadLocation: string }) =>
+  state.downloadLocation;
