@@ -1,8 +1,7 @@
 {
   "name": "horrible-downloader",
   "version": "1.0.0",
-  "description":
-    "HorribleDownloader is a Downloader for the HorribleSubs Website",
+  "description": "HorribleDownloader is a Downloader for the HorribleSubs Website",
   "main": "index.js",
   "scripts": {
     "dev": "electron-webpack dev",
@@ -14,11 +13,13 @@
     "url": "git+https://github.com/hesch/horrible-downloader.git"
   },
   "dependencies": {
+    "@types/got": "^8.3.1",
     "@types/irc": "^0.3.32",
     "@types/react": "^16.3.17",
     "@types/react-dom": "^16.0.6",
     "bulma": "^0.7.1",
     "feedparser": "^2.2.9",
+    "got": "^8.3.1",
     "irc": "^0.5.2",
     "irc-dcc": "^0.2.4",
     "react": "^16.4.1",

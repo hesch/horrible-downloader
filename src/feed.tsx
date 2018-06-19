@@ -1,8 +1,8 @@
-import * as FeedParser from 'feedparser';
+import * as ReleaseParser from './service/release-parser';
 import * as React from 'react';
 
 export class Feed extends React.Component {
-  private data: Article[];
+  private data: Series[];
 
   constructor(props: {}) {
     super(props);
@@ -11,19 +11,24 @@ export class Feed extends React.Component {
   }
 
   public fetchData() {
-    const parser = new FeedParser({});
-
-    parser.on('data', (data: Article) => this.data.push(data));
-
-    fetch('/feed')
-      .then(res => res.text())
-      .then(t => parser.write(t, undefined, () => this.forceUpdate()));
+    ReleaseParser.default.search('[720p]', 'Ginpachi-Sensei').then(releases => {
+      console.log(releases);
+      this.data = releases;
+      this.forceUpdate();
+    });
   }
 
   public render() {
     return (
       <ul id="feed">
-        {this.data.map(article => <li key={article.guid}>{article.title}</li>)}
+        {this.data.map(series => (
+          <li key={series.name}>
+            {series.name} -
+            {series.episodes.map(episode => (
+              <span key={episode.pack}> {episode.episode}</span>
+            ))}
+          </li>
+        ))}
       </ul>
     );
   }

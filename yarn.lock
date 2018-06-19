@@ -801,6 +801,12 @@
     "@types/node" "*"
     "@types/sax" "*"
 
+"@types/got@^8.3.1":
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/@types/got/-/got-8.3.1.tgz#823ded0ce469895be3d01553fec31ff86339ff9f"
+  dependencies:
+    "@types/node" "*"
+
 "@types/irc@^0.3.32":
   version "0.3.32"
   resolved "https://registry.yarnpkg.com/@types/irc/-/irc-0.3.32.tgz#4c7a72633635ebb63717cf915d6816b7d6875702"
