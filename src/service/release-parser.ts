@@ -5,7 +5,7 @@ export default class ReleaseParser {
   private static splitRegex = /[\r\n]+/;
   private static lineRegex = /p\.k\[\d+\] = {b:"([^"]+)", n:(\d+), s:(\d+), f:"\[HorribleSubs] (.*) - (.*) \[(\d+)p]\.[a-z]{2,4}"};/;
 
-  public static search(query: string, bot?: string): Promise<Series[]> {
+  public static search(query: string, bot?: string): Promise<Episode[]> {
     const botPart = !!bot ? `&nick=${bot}` : '';
     const url = `${this.searchUrl}?t=${query}${botPart}`;
 
@@ -13,16 +13,10 @@ export default class ReleaseParser {
       .then(response => response.body)
       .then(text => text.split(ReleaseParser.splitRegex))
       .then(lines => lines.map(ReleaseParser.parseLine))
-      .then(releases => releases.filter(r => r !== null) as Episode[])
-      .then(episodes => ReleaseParser.group(episodes))
-      .then(series =>
-        series.sort(({ name: nameA }, { name: name2 }) =>
-          nameA.localeCompare(name2),
-        ),
-      );
+      .then(releases => releases.filter(r => r !== null) as Episode[]);
   }
 
-  private static group(episodes: Episode[]): Series[] {
+  public static group(episodes: Episode[]): Series[] {
     const grouped: Map<string, Episode[]> = new Map();
 
     episodes.forEach(episode => {

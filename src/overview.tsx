@@ -1,23 +1,41 @@
+import * as ReleaseParser from './service/release-parser';
 import * as React from 'react';
 
 export class Overview extends React.Component {
+  private data: Series[];
+
+  constructor(props: {}) {
+    super(props);
+    this.data = [];
+    this.fetchData();
+  }
+
+  public fetchData() {
+    ReleaseParser.default
+      .search('[720p]', 'Ginpachi-Sensei')
+      .then(episodes => ReleaseParser.default.group(episodes))
+      .then(series =>
+        series.sort(({ name: nameA }, { name: name2 }) =>
+          nameA.localeCompare(name2),
+        ),
+      )
+      .then(releases => {
+        console.log(releases);
+        this.data = releases;
+        this.forceUpdate();
+      });
+  }
+
   render() {
     return (
       <div>
         <h1 className="title">Alle Serien</h1>
         <ul className="menu-list">
-          <li>
-            <a>Entry 1</a>
-          </li>
-          <li>
-            <a>Entry 2</a>
-          </li>
-          <li>
-            <a>Entry 3</a>
-          </li>
-          <li>
-            <a>Entry 4</a>
-          </li>
+          {this.data.map(series => (
+            <li key={series.name}>
+              <a>{series.name}</a>
+            </li>
+          ))}
         </ul>
       </div>
     );
