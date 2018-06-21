@@ -11,7 +11,7 @@ export class Navigation extends React.Component {
 
   public render() {
     return (
-      <nav className="column is-1">
+      <nav className="column is-2">
         <aside className="menu">
           <p className="menu-label">Navigation</p>
           <ul className="menu-list">

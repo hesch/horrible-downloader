@@ -18,7 +18,7 @@ export const Root = ({store}: { store: ReduxStore<Store.All> }) => (
     <Router>
       <div className="columns">
         <Navigation/>
-        <div className="columns container">
+        <div className="column container">
           {navItems.map(item => (
             <Route
               key={item.title}
