@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {Navigation, NavItem} from "./navigation";
 import {Overview} from "./overview";
@@ -26,11 +26,6 @@ export const Root = ({store}: { store: ReduxStore<Store.All> }) => (
               component={item.component}
             />
           ))}
-          <Redirect
-            to={{
-              pathname: "/Main",
-            }}
-          />
         </div>
       </div>
     </Router>
