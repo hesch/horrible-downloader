@@ -9,4 +9,8 @@ export type Action =
   | {
       type: 'SERIES_SUBSCRIBE';
       payload: string;
-    };
+    }
+  | {
+    type: 'SERIES_UNSUBSCRIBE';
+    payload: string;
+  };

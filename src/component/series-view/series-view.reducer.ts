@@ -13,6 +13,8 @@ export default ((
   switch (action.type) {
     case 'SERIES_SUBSCRIBE':
       return updateIn(state, `series['${action.payload}'].subscribed`, () => true);
+    case 'SERIES_UNSUBSCRIBE':
+      return updateIn(state, `series['${action.payload}'].subscribed`, () => false);
     default:
       return state;
   }
@@ -25,3 +27,6 @@ export const getCurrentSeries = (state: Store.All) => getSeries(state, state.ser
 
 export const isSubscribed = (state: Store.All, series: string) =>
   state.series.list[series].subscribed;
+
+export const getSubscriptions = (state: Store.All) =>
+  Object.values(state.series.list).filter(s => s.subscribed);

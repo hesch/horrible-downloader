@@ -6,11 +6,12 @@ import {Overview} from "./overview";
 import {Feed} from "./feed";
 import {Store} from "./shared/reducers/store";
 import {Store as ReduxStore} from 'redux';
+import {SubscriptionView} from './component/subscription-view/subscription-view';
 
 export const navItems: NavItem[] = [
   {title: 'Main', component: Feed},
   {title: 'Shows', component: Overview},
-  {title: 'Subscriptions', component: Overview},
+  {title: 'Subscriptions', component: SubscriptionView},
 ];
 
 export const Root = ({store}: { store: ReduxStore<Store.All> }) => (
