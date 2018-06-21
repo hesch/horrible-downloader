@@ -1,0 +1,21 @@
+{
+    series: Series[],
+    settings: Settings,
+    seriesData: {
+        [key: seriesName]: {
+            subscribed: boolean,
+            currentEpisode: string,
+            quality: string
+        }
+    },
+    notifications: Release[],
+    downloads: [{
+        release: Release,
+        bytesLoadad: number,
+        destinationPath: string,
+        status: string
+    }],
+    seriesView: {
+        current: Series
+    }
+}

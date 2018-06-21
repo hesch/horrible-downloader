@@ -3,26 +3,18 @@ import { Action } from '../../shared/reducers/Action';
 import { Store } from '../../shared/reducers/store';
 
 export default ((
-  state: Store.Series = {
+  state: Store.SeriesView = {
     current: 'Darling in the Franxx',
-    list: {},
+    series: {},
   },
   action: Action,
-): Store.Series => {
+): Store.SeriesView => {
   switch (action.type) {
     case 'SERIES_SUBSCRIBE':
       return Object.assign({}, state, {
         series: {
           [action.payload]: {
             subscribed: true,
-          },
-        },
-      });
-    case 'SERIES_UNSUBSCRIBE':
-      return Object.assign({}, state, {
-        series: {
-          [action.payload]: {
-            subscribed: false,
           },
         },
       });
@@ -35,10 +27,7 @@ export const getSeries = (state: Store.All, series: string) =>
   state.series.list[series].data;
 
 export const getCurrentSeries = (state: Store.All) =>
-  getSeries(state, state.series.current);
+  getSeries(state, state.seriesView.current);
 
 export const isSubscribed = (state: Store.All, series: string) =>
-  state.series.list[series].subscribed;
-
-export const getSubscriptions = (state: Store.All) =>
-  Object.values(state.series.list).filter(s => s.subscribed);
+  state.series[series].subscribed;

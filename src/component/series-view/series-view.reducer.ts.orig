@@ -11,6 +11,11 @@ export default ((
 ): Store.Series => {
   switch (action.type) {
     case 'SERIES_SUBSCRIBE':
+<<<<<<< Updated upstream
+      return updateIn(state, `series['${action.payload}'].subscribed`, () => true);
+    case 'SERIES_UNSUBSCRIBE':
+      return updateIn(state, `series['${action.payload}'].subscribed`, () => false);
+=======
       return Object.assign({}, state, {
         series: {
           [action.payload]: {
@@ -18,14 +23,7 @@ export default ((
           },
         },
       });
-    case 'SERIES_UNSUBSCRIBE':
-      return Object.assign({}, state, {
-        series: {
-          [action.payload]: {
-            subscribed: false,
-          },
-        },
-      });
+>>>>>>> Stashed changes
     default:
       return state;
   }

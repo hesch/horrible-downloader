@@ -13,10 +13,11 @@ export type Action =
       payload: string;
     }
   | {
-      type: 'SERIES_UNSUBSCRIBE';
-      payload: string;
-    }
-  | {
+<<<<<<< Updated upstream
+    type: 'SERIES_UNSUBSCRIBE';
+    payload: string;
+  };
+=======
       type: 'REQUEST_SERIES';
     }
   | {
@@ -47,3 +48,4 @@ export const loadSeries = () => {
       .then(series => dispatch(receiveSeries(series)));
   };
 };
+>>>>>>> Stashed changes
