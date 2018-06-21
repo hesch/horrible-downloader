@@ -1,8 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import './main.scss';
-import { Navigation } from '../navigation';
+import {configureStore} from "../shared/reducers/configureStore";
+import {Root} from "../Root";
 
-const App = () => <Navigation />;
+const store = configureStore();
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<Root store={store} />, document.getElementById('app'));

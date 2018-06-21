@@ -1,47 +1,34 @@
 import * as React from 'react';
-import { Feed } from './feed';
-import { Overview } from './overview';
+import {NavLink} from "react-router-dom";
+import {navItems} from "./Root";
 
-interface NavItem {
+export interface NavItem {
   title: string;
   component: React.ComponentClass;
 }
 
 export class Navigation extends React.Component {
-  public navItems: NavItem[] = [
-    { title: 'Main', component: Feed },
-    { title: 'Shows', component: Overview },
-    { title: 'Subscriptions', component: Overview },
-  ];
-
-  public state: { activeComponent: React.ComponentClass } = {
-    activeComponent: this.navItems[0].component,
-  };
-
-  public navigate(item: NavItem) {
-    console.debug('navigate to: ', item);
-    this.setState({ activeComponent: item.component });
-  }
 
   public render() {
     return (
-      <div className="columns">
-        <nav className="column container is-1">
-          <aside className="menu">
-            <p className="menu-label">Navigation</p>
-            <ul className="menu-list">
-              {this.navItems.map(item => (
-                <li key={item.title} onClick={() => this.navigate(item)}>
-                  <a>{item.title}</a>
-                </li>
-              ))}
-            </ul>
-          </aside>
-        </nav>
-        <div className="column">
-          {React.createElement(this.state.activeComponent)}
-        </div>
-      </div>
+      <nav className="column is-1">
+        <aside className="menu">
+          <p className="menu-label">Navigation</p>
+          <ul className="menu-list">
+            {navItems.map(item => (
+              <li key={item.title}>
+                  <NavLink
+                    to={`${item.title}`}
+                    activeStyle={{
+                      textDecoration: 'none',
+                      color: 'black'
+                    }}
+                  >{item.title}</NavLink>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      </nav>
     );
   }
 }
