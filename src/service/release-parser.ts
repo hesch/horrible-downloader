@@ -1,5 +1,5 @@
 import * as got from 'got';
-import * as _ from 'lodash';
+import { groupBy } from 'lodash';
 
 export default class ReleaseParser {
   private static searchUrl = 'http://xdcc.horriblesubs.info/search.php';
@@ -18,7 +18,7 @@ export default class ReleaseParser {
   }
 
   public static groupBySeries(releases: Release[]): Series[] {
-    return Object.entries(_.groupBy(releases, 'series')).map(
+    return Object.entries(groupBy(releases, 'series')).map(
       ([name, releases]) => ({
         name,
         episodes: ReleaseParser.groupByEpisode(name, releases),
@@ -30,7 +30,7 @@ export default class ReleaseParser {
     series: string,
     releases: Release[],
   ): Episode[] {
-    return Object.entries(_.groupBy(releases, 'episode')).map(
+    return Object.entries(groupBy(releases, 'episode')).map(
       ([episode, releases]) => ({ series, episode, releases }),
     );
   }

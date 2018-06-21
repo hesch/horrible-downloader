@@ -5,4 +5,8 @@ export type Action =
     }
   | {
       type: 'RESET_COUNTER';
+    }
+  | {
+      type: 'SERIES_SUBSCRIBE';
+      payload: string;
     };
