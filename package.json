@@ -15,6 +15,7 @@
   "dependencies": {
     "@types/got": "^8.3.1",
     "@types/irc": "^0.3.32",
+    "@types/lodash": "^4.14.110",
     "@types/react": "^16.3.17",
     "@types/react-dom": "^16.0.6",
     "bulma": "^0.7.1",
@@ -22,6 +23,7 @@
     "got": "^8.3.1",
     "irc": "^0.5.2",
     "irc-dcc": "^0.2.4",
+    "lodash": "^4.17.10",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",

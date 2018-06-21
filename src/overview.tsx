@@ -12,16 +12,15 @@ export class Overview extends React.Component {
 
   public fetchData() {
     ReleaseParser.default
-      .search('[720p]', 'Ginpachi-Sensei')
-      .then(episodes => ReleaseParser.default.group(episodes))
+      .search('', 'Ginpachi-Sensei')
+      .then(releases => ReleaseParser.default.groupBySeries(releases))
       .then(series =>
         series.sort(({ name: nameA }, { name: name2 }) =>
           nameA.localeCompare(name2),
         ),
       )
-      .then(releases => {
-        console.log(releases);
-        this.data = releases;
+      .then(series => {
+        this.data = series;
         this.forceUpdate();
       });
   }

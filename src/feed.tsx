@@ -2,7 +2,7 @@ import * as ReleaseParser from './service/release-parser';
 import * as React from 'react';
 
 export class Feed extends React.Component {
-  private data: Episode[];
+  private data: Release[];
 
   constructor(props: {}) {
     super(props);
@@ -14,7 +14,6 @@ export class Feed extends React.Component {
     ReleaseParser.default
       .search('[1080p]', 'Ginpachi-Sensei')
       .then(releases => {
-        console.log(releases);
         this.data = releases;
         this.forceUpdate();
       });

@@ -1,11 +1,12 @@
 import * as got from 'got';
+import * as _ from 'lodash';
 
 export default class ReleaseParser {
   private static searchUrl = 'http://xdcc.horriblesubs.info/search.php';
   private static splitRegex = /[\r\n]+/;
   private static lineRegex = /p\.k\[\d+\] = {b:"([^"]+)", n:(\d+), s:(\d+), f:"\[HorribleSubs] (.*) - (.*) \[(\d+)p]\.[a-z]{2,4}"};/;
 
-  public static search(query: string, bot?: string): Promise<Episode[]> {
+  public static search(query: string, bot?: string): Promise<Release[]> {
     const botPart = !!bot ? `&nick=${bot}` : '';
     const url = `${this.searchUrl}?t=${query}${botPart}`;
 
@@ -13,30 +14,29 @@ export default class ReleaseParser {
       .then(response => response.body)
       .then(text => text.split(ReleaseParser.splitRegex))
       .then(lines => lines.map(ReleaseParser.parseLine))
-      .then(releases => releases.filter(r => r !== null) as Episode[]);
+      .then(releases => releases.filter(r => r !== null) as Release[]);
   }
 
-  public static group(episodes: Episode[]): Series[] {
-    const grouped: Map<string, Episode[]> = new Map();
-
-    episodes.forEach(episode => {
-      if (grouped.has(episode.series)) {
-        const seriesEpisodes = grouped.get(episode.series) as Episode[];
-        seriesEpisodes.push(episode);
-      } else {
-        grouped.set(episode.series, [episode]);
-      }
-    });
-
-    return Array.from(grouped.entries()).map(([name, episodes]) => ({
-      name,
-      episodes,
-    }));
+  public static groupBySeries(releases: Release[]): Series[] {
+    return Object.entries(_.groupBy(releases, 'series')).map(
+      ([name, releases]) => ({
+        name,
+        episodes: ReleaseParser.groupByEpisode(name, releases),
+      }),
+    );
   }
 
-  private static parseLine(line: string): Episode | null {
+  private static groupByEpisode(
+    series: string,
+    releases: Release[],
+  ): Episode[] {
+    return Object.entries(_.groupBy(releases, 'episode')).map(
+      ([episode, releases]) => ({ series, episode, releases }),
+    );
+  }
+
+  private static parseLine(line: string): Release | null {
     const match = line.match(ReleaseParser.lineRegex);
-
     if (match == null) {
       return null;
     }
