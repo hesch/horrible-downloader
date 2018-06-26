@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Store } from '../../shared/reducers/store';
 import { getCurrentSeries } from './series-view.reducer';
+import { subscribeSeries } from '../../shared/reducers/Action';
 
 interface MyProps {
   subscribe: (series: string) => void;
@@ -10,7 +11,9 @@ interface MyProps {
 
 class SeriesView extends React.Component<MyProps, any> {
   render() {
-    const { series } = this.props;
+    const { series, subscribe } = this.props;
+
+    subscribe(series.name);
 
     return (
       <div>
@@ -27,16 +30,11 @@ class SeriesView extends React.Component<MyProps, any> {
   }
 }
 
-const mapStateToProps = (state: Store.All) => getCurrentSeries(state)
+const mapStateToProps = (state: Store.All) => getCurrentSeries(state);
 
 const mapDispatchToProps = (dispatch: any) => ({
-    subscribe: (series: string) => {
-      dispatch({
-        type: 'SERIES_SUBSCRIBE',
-        payload: series,
-      });
-    },
-  })
+  subscribe: (series: string) => dispatch(subscribeSeries(series)),
+});
 
 export const Series = connect(
   mapStateToProps,

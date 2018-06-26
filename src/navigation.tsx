@@ -4,7 +4,7 @@ import {navItems} from "./Root";
 
 export interface NavItem {
   title: string;
-  component: React.ComponentClass;
+  component: React.ComponentClass<any>;
 }
 
 export class Navigation extends React.Component {

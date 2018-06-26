@@ -10,18 +10,18 @@ export type Action =
     }
   | {
       type: 'SERIES_SUBSCRIBE';
-      payload: string;
+      seriesName: string;
     }
   | {
       type: 'SERIES_UNSUBSCRIBE';
-      payload: string;
+      seriesName: string;
     }
   | {
       type: 'REQUEST_SERIES';
     }
   | {
       type: 'RECEIVE_SERIES';
-      series: string;
+      series: Series[];
     };
 
 export const requestSeries = () => {
@@ -47,3 +47,8 @@ export const loadSeries = () => {
       .then(series => dispatch(receiveSeries(series)));
   };
 };
+
+export const subscribeSeries = (seriesName: string) => ({
+  seriesName,
+  type: 'SERIES_SUBSCRIBE',
+})

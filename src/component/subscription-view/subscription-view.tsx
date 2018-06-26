@@ -38,7 +38,7 @@ const mapDispatchToProps = (dispatch: any) => ({
   },
 });
 
-export const Series = connect(
+export const Subscription = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(SubscriptionView);

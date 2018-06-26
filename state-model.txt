@@ -1,7 +1,10 @@
 {
-    series: Series[],
-    settings: Settings,
     seriesData: {
+        loadState: string.
+        data: Series[],
+    },
+    settings: Settings,
+    seriesConfig: {
         [key: seriesName]: {
             subscribed: boolean,
             currentEpisode: string,
