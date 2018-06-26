@@ -1,5 +1,6 @@
 import * as got from 'got';
 import { groupBy } from 'lodash';
+import * as nodeForge from 'node-forge';
 
 export default class ReleaseParser {
   private static searchUrl = 'http://xdcc.horriblesubs.info/search.php';
@@ -21,9 +22,16 @@ export default class ReleaseParser {
     return Object.entries(groupBy(releases, 'series')).map(
       ([name, releases]) => ({
         name,
+        id: ReleaseParser.sha256(name),
         episodes: ReleaseParser.groupByEpisode(name, releases),
       }),
     );
+  }
+
+  private static sha256(string: string) {
+    const md = nodeForge.md.sha256.create();
+    md.update(string);
+    return md.digest().toHex();
   }
 
   private static groupByEpisode(
