@@ -10,10 +10,10 @@ import { Subscription } from './component/subscription-view/subscription-view';
 import { SeriesView } from './component/series-view/series-view';
 
 export const navItems: NavItem[] = [
-  { title: 'Main', component: Feed },
-  { title: 'Shows', component: Overview },
-  { title: 'Subscriptions', component: Subscription },
-  { title: 'Series/:name', component: SeriesView },
+  { title: 'Main', route: 'main', component: Feed },
+  { title: 'Shows', route: 'shows', component: Overview },
+  { title: 'Subscription', route: 'subscriptions', component: Subscription },
+  { route: 'series/:id', component: SeriesView },
 ];
 
 export const Root = ({ store }: { store: ReduxStore<Store.All> }) => (
@@ -24,8 +24,8 @@ export const Root = ({ store }: { store: ReduxStore<Store.All> }) => (
         <div className="column container">
           {navItems.map(item => (
             <Route
-              key={item.title}
-              path={`/${item.title}`}
+              key={item.route}
+              path={`/${item.route}`}
               component={item.component}
             />
           ))}

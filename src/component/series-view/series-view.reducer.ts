@@ -4,7 +4,7 @@ import { Store } from '../../shared/reducers/store';
 
 export default ((
   state: Store.SeriesView = {
-    current: 'Darling in the Franxx',
+    current: 'Darling in the FranXX',
   },
   action: Action,
 ): Store.SeriesView => {
@@ -17,8 +17,9 @@ export default ((
 export const getSeries = (state: Store.All, series: string) =>
   state.seriesData.data.find(current => current.name === series);
 
-export const getCurrentSeries = (state: Store.All) =>
-  getSeries(state, state.seriesView.current);
+export const getCurrentSeries = (state: Store.All) => {
+  return getSeries(state, state.seriesView.current);
+};
 
 export const isSubscribed = (state: Store.All, series: string) =>
   state.seriesConfig[series].subscribed;

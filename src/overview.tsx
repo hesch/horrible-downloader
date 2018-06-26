@@ -36,7 +36,7 @@ export class Overview extends React.Component {
             <li key={series.name}>
               <NavLink
                 // fixme: series name can contain invalid symbols, we need an id
-                to={`series/${series.name}`}
+                to={`series/${series.id}`}
                 activeStyle={{ textDecoration: 'none', color: 'black' }}
               >
                 {series.name}

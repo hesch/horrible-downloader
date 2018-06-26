@@ -11,9 +11,7 @@ interface MyProps {
 
 class SeriesViewComponent extends React.Component<MyProps, any> {
   render() {
-    const { series, subscribe } = this.props;
-
-    subscribe(series.name);
+    const { series } = this.props;
 
     return (
       <div>
@@ -30,7 +28,9 @@ class SeriesViewComponent extends React.Component<MyProps, any> {
   }
 }
 
-const mapStateToProps = (state: Store.All) => getCurrentSeries(state);
+const mapStateToProps = (state: Store.All) => ({
+  series: getCurrentSeries(state)
+});
 
 const mapDispatchToProps = (dispatch: any) => ({
   subscribe: (series: string) => dispatch(subscribeSeries(series)),

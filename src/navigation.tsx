@@ -3,7 +3,8 @@ import {NavLink} from "react-router-dom";
 import {navItems} from "./Root";
 
 export interface NavItem {
-  title: string;
+  title?: string;
+  route: string;
   component: React.ComponentClass<any>;
 }
 
@@ -15,7 +16,9 @@ export class Navigation extends React.Component {
         <aside className="menu">
           <p className="menu-label">Navigation</p>
           <ul className="menu-list">
-            {navItems.map(item => (
+            {navItems
+              .filter(item => item.title !== undefined)
+              .map(item => (
               <li key={item.title}>
                   <NavLink
                     to={`${item.title}`}
