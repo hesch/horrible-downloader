@@ -14,12 +14,12 @@ export namespace Store {
     }
   }
 
-  export type Downloads = [{
+  export type Downloads = {
     release: Release;
     bytesLoaded: number;
     destinationPath: string;
     status: string;
-  }];
+  }[];
 
   export type Notifications = Release[];
 

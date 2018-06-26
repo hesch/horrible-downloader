@@ -9,7 +9,7 @@ interface MyProps {
   series: Series;
 }
 
-class SeriesView extends React.Component<MyProps, any> {
+class SeriesViewComponent extends React.Component<MyProps, any> {
   render() {
     const { series, subscribe } = this.props;
 
@@ -36,7 +36,7 @@ const mapDispatchToProps = (dispatch: any) => ({
   subscribe: (series: string) => dispatch(subscribeSeries(series)),
 });
 
-export const Series = connect(
+export const SeriesView = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SeriesView);
+)(SeriesViewComponent);

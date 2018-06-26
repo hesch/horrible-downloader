@@ -1,5 +1,6 @@
 import * as ReleaseParser from './service/release-parser';
 import * as React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export class Overview extends React.Component {
   private data: Series[];
@@ -20,6 +21,7 @@ export class Overview extends React.Component {
         ),
       )
       .then(series => {
+        console.log(series);
         this.data = series;
         this.forceUpdate();
       });
@@ -32,7 +34,13 @@ export class Overview extends React.Component {
         <ul className="menu-list">
           {this.data.map(series => (
             <li key={series.name}>
-              <a>{series.name}</a>
+              <NavLink
+                // fixme: series name can contain invalid symbols, we need an id
+                to={`series/${series.name}`}
+                activeStyle={{ textDecoration: 'none', color: 'black' }}
+              >
+                {series.name}
+              </NavLink>
             </li>
           ))}
         </ul>

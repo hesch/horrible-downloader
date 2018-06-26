@@ -18,7 +18,7 @@ export default class ReleaseParser {
   }
 
   public static groupBySeries(releases: Release[]): Series[] {
-    return Object.entries(groupBy(releases, 'subscriptions')).map(
+    return Object.entries(groupBy(releases, 'series')).map(
       ([name, releases]) => ({
         name,
         episodes: ReleaseParser.groupByEpisode(name, releases),
